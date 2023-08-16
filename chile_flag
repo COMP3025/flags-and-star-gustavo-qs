@@ -1,0 +1,51 @@
+import pygame
+import math
+
+def draw_star(screen, position, size, angle):
+  x, y = position
+  angle_rad = math.radians(angle)
+  angle_between_arms = math.radians(36)
+
+  points = []
+  for _ in range(5):
+    inner_x = x + size * math.cos(angle_rad)
+    inner_y = y - size * math.sin(angle_rad)
+    points.append((inner_x, inner_y))
+
+    angle_rad += angle_between_arms
+
+    outer_x = x + size * 0.5 * math.cos(angle_rad)
+    outer_y = y - size * 0.5 * math.sin(angle_rad)
+    points.append((outer_x, outer_y))
+
+    angle_rad += angle_between_arms
+
+  pygame.draw.polygon(screen, (255, 255, 255), points)
+
+
+pygame.init()
+
+WHITE = (255, 255, 255)
+RED = (213, 43, 30)
+BLUE = (0, 56, 168)
+
+width, height = 400, 300
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Flat Star Drawer")
+
+pygame.draw.rect(screen, WHITE, pygame.Rect(0, 0, width, height // 2))
+pygame.draw.rect(screen, RED, pygame.Rect(0, height // 2, width, height // 2))
+pygame.draw.rect(screen, BLUE, pygame.Rect(0, 0, width // 3, height // 2))
+
+draw_star(screen, (60, 65), 50, 17)
+
+pygame.display.flip()
+
+running = True
+while running:
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      running = False
+
+# Clean up
+pygame.quit()
