@@ -14,8 +14,8 @@ def draw_star(screen, position, size, angle):
 
     angle_rad += angle_between_arms
 
-    outer_x = x + size * 0.5 * math.cos(angle_rad)
-    outer_y = y - size * 0.5 * math.sin(angle_rad)
+    outer_x = x + size * 0.45 * math.cos(angle_rad)
+    outer_y = y - size * 0.4 * math.sin(angle_rad)
     points.append((outer_x, outer_y))
 
     angle_rad += angle_between_arms
@@ -37,7 +37,7 @@ pygame.draw.rect(screen, WHITE, pygame.Rect(0, 0, width, height // 2))
 pygame.draw.rect(screen, RED, pygame.Rect(0, height // 2, width, height // 2))
 pygame.draw.rect(screen, BLUE, pygame.Rect(0, 0, width // 3, height // 2))
 
-draw_star(screen, (60, 65), 50, 17)
+draw_star(screen, (60, 76), 35, 17)
 
 pygame.display.flip()
 
